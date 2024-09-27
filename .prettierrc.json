@@ -1,4 +1,10 @@
 {
     "useTabs": false,
-    "tabWidth": 4
+    "tabWidth": 4,
+    "quoteProps": "consistent",
+    "bracketSpacing": true,
+    "bracketSameLine": false,
+    "singleQuote": true,
+    "arrowParens": "always",
+    "printWidth": 120
 }
