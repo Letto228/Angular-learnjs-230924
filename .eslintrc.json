@@ -4,38 +4,150 @@
     "overrides": [
         {
             "files": ["*.ts"],
+            "parserOptions": {
+                "project": ["tsconfig.json", "e2e/tsconfig.json"],
+                "createDefaultProgram": true
+            },
             "extends": [
-                "eslint:recommended",
-                "plugin:@typescript-eslint/recommended",
                 "plugin:@angular-eslint/recommended",
-                "plugin:@angular-eslint/template/process-inline-templates"
+                "plugin:@angular-eslint/template/process-inline-templates",
+                "plugin:prettier/recommended"
             ],
+            "plugins": ["sort-class-members", "unused-imports"],
             "rules": {
-                "@angular-eslint/directive-selector": [
-                    "error",
-                    {
-                        "type": "attribute",
-                        "prefix": "app",
-                        "style": "camelCase"
-                    }
-                ],
                 "@angular-eslint/component-selector": [
                     "error",
                     {
                         "type": "element",
-                        "prefix": "app",
+                        "prefix": "", //temporary disable the prefix rule
                         "style": "kebab-case"
                     }
-                ]
+                ],
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "type": "attribute",
+                        "prefix": "", //temporary disable the prefix rule
+                        "style": "camelCase"
+                    }
+                ],
+                "@typescript-eslint/naming-convention": "off",
+                "@angular-eslint/no-output-on-prefix": "off",
+                "radix": "off",
+                "max-len": "off",
+                "prefer-arrow/prefer-arrow-functions": "off",
+                "typescript-eslint/quotes": "off",
+                "no-underscore-dangle": "off",
+                "@typescript-eslint/consistent-type-assertions": "off",
+                "@typescript-eslint/member-ordering": "off",
+                "@typescript-eslint/no-shadow": "off",
+                "sort-class-members/sort-class-members": [
+                    "error",
+                    {
+                        "order": [
+                            "constructor",
+                            "[static-properties]",
+                            "[static-methods]",
+                            "[viewContent]",
+                            "[decorators]",
+                            "[properties]",
+                            "[conventional-private-properties]", // matches properties whose name starts with an underscore
+                            "[getters]",
+                            "[setters]",
+                            "[accessor-pairs]",
+                            "[lifecycle]",
+                            "[methods]",
+                            "[conventional-private-methods]", // matches methods whose name starts with an underscore
+                            "[everything-else]"
+                        ],
+                        "groups": {
+                            "lifecycle": [
+                                "ngOnChanges",
+                                "ngOnInit",
+                                "ngDoCheck",
+                                "ngAfterContentInit",
+                                "ngAfterContentChecked",
+                                "ngAfterViewInit",
+                                "ngAfterViewChecked",
+                                "ngOnDestroy"
+                            ],
+                            "decorators": [
+                                // TODO: add sort for @Decorator set/get support (ex.: @Input() set value() {})
+                                {
+                                    "type": "property",
+                                    "groupByDecorator": "Input",
+                                    "sort": "alphabetical"
+                                },
+                                {
+                                    "type": "property",
+                                    "groupByDecorator": "Output",
+                                    "sort": "alphabetical"
+                                },
+                                {
+                                    "type": "property",
+                                    "groupByDecorator": "HostBinding",
+                                    "sort": "alphabetical"
+                                }
+                            ],
+                            "viewContent": [
+                                {
+                                    "type": "property",
+                                    "groupByDecorator": "ContentChild",
+                                    "sort": "alphabetical"
+                                },
+                                {
+                                    "type": "property",
+                                    "groupByDecorator": "ContentChildren",
+                                    "sort": "alphabetical"
+                                },
+                                {
+                                    "type": "property",
+                                    "groupByDecorator": "ViewChild",
+                                    "sort": "alphabetical"
+                                },
+                                {
+                                    "type": "property",
+                                    "groupByDecorator": "ViewChildren",
+                                    "sort": "alphabetical"
+                                }
+                            ]
+                        },
+                        "accessorPairPositioning": "getThenSet",
+                        "stopAfterFirstProblem": false
+                    }
+                ],
+                "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
+                "unused-imports/no-unused-imports": "error",
+                "@typescript-eslint/prefer-for-of": "off",
+                "unused-imports/no-unused-vars": [
+                    "warn",
+                    {
+                        "vars": "all",
+                        "varsIgnorePattern": "^_",
+                        "args": "after-used",
+                        "argsIgnorePattern": "^_"
+                    }
+                ],
+                "@angular-eslint/no-host-metadata-property": "off",
+                "@angular-eslint/component-class-suffix": "off",
+                "@angular-eslint/no-output-native": "off"
             }
         },
+        // NOTE: WE ARE NOT APPLYING PRETTIER IN THIS OVERRIDE, ONLY @ANGULAR-ESLINT/TEMPLATE
         {
             "files": ["*.html"],
-            "extends": [
-                "plugin:@angular-eslint/template/recommended",
-                "plugin:@angular-eslint/template/accessibility"
-            ],
+            "extends": ["plugin:@angular-eslint/template/recommended"],
             "rules": {}
+        },
+        // NOTE: WE ARE NOT APPLYING @ANGULAR-ESLINT/TEMPLATE IN THIS OVERRIDE, ONLY PRETTIER
+        {
+            "files": ["*.html"],
+            "excludedFiles": ["*inline-template-*.component.html"],
+            "extends": ["plugin:prettier/recommended"],
+            "rules": {
+                // NOTE: WE ARE OVERRIDING THE DEFAULT CONFIG TO ALWAYS SET THE PARSER TO ANGULAR (SEE BELOW)
+                "prettier/prettier": ["error", { "parser": "angular" }]
+            }
         }
     ]
 }
