@@ -32,7 +32,8 @@
         "@typescript-eslint/no-useless-empty-export": "error",
         "@typescript-eslint/no-use-before-define": "error",
         "@typescript-eslint/no-empty-interface": "error",
-        "@typescript-eslint/no-duplicate-enum-values": "error"
+        "@typescript-eslint/no-duplicate-enum-values": "error",
+        "@typescript-eslint/no-empty-function": "warn"
       }
     },
     {
