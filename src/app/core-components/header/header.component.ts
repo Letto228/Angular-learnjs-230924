@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ApplicationConfig} from '../../shared/application-config/application-config.interface';
 
 @Component({
     selector: 'app-header',
@@ -6,8 +7,11 @@ import {Component} from '@angular/core';
     styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-    title = 'Angular-learnjs-230924';
-    imgSrc = '../../../favicon.ico';
+    @Input() applicationConfig: ApplicationConfig | undefined;
 
-    onClick() {}
+    @Output() menuClick = new EventEmitter<void>();
+
+    onClick() {
+        this.menuClick.emit();
+    }
 }
