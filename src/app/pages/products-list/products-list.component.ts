@@ -8,4 +8,8 @@ import {productsMock} from '../../shared/products/products.mock';
 })
 export class ProductsListComponent {
     readonly products = productsMock;
+
+    addToCart() {
+        console.info('🛸 Родительский компонент ');
+    }
 }
