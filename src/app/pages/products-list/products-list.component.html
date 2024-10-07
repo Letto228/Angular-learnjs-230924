@@ -1,5 +1,25 @@
-<!-- <app-card class="card" [product]="products[0]"></app-card>
-<app-card class="card" [product]="products[1]"></app-card>
-<app-card class="card" [product]="products[2]"></app-card>
-<app-card class="card" [product]="products[3]"></app-card>
-<app-card class="card" [product]="products[4]"></app-card> -->
+<app-card
+    class="card"
+    [product]="products[0]"
+    (addToCard)="onProductAddedToCart($event)"
+></app-card>
+<app-card
+    class="card"
+    [product]="products[1]"
+    (addToCard)="onProductAddedToCart($event)"
+></app-card>
+<app-card
+    class="card"
+    [product]="products[2]"
+    (addToCard)="onProductAddedToCart($event)"
+></app-card>
+<app-card
+    class="card"
+    [product]="products[3]"
+    (addToCard)="onProductAddedToCart($event)"
+></app-card>
+<app-card
+    class="card"
+    [product]="products[4]"
+    (addToCard)="onProductAddedToCart($event)"
+></app-card>

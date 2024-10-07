@@ -19,5 +19,6 @@ import {SidenavModule} from './core-components/sidenav/sidenav.module';
         SidenavModule,
     ],
     bootstrap: [AppComponent],
+    exports: [],
 })
 export class AppModule {}

@@ -1,0 +1,5 @@
+<div class="rating-chip">
+    <app-star *ngFor="let fullStars of rateCount(); let index = index"></app-star>
+    <app-half-star *ngIf="shouldAddHalf()"></app-half-star>
+    <p class="m-0">{{ rate?.feedbacks }}</p>
+</div>

@@ -8,4 +8,10 @@ import {productsMock} from '../../shared/products/products.mock';
 })
 export class ProductsListComponent {
     readonly products = productsMock;
+
+    onProductAddedToCart(productId: string | undefined) {
+        /* eslint-disable no-console */
+        console.log('Product added to cart', productId);
+        /* eslint-enable no-console */
+    }
 }

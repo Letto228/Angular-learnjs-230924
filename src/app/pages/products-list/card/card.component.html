@@ -1,0 +1,28 @@
+<mat-card class="example-card">
+    <img mat-card-image alt="image" class="card-img" [src]="product?.images?.[0]?.url" />
+    <mat-card-content class="h-full">
+        <div class="card-content-container">
+            <mat-card-title>{{ product?.name }}</mat-card-title>
+            <mat-card-subtitle>
+                <div class="subtitle-row">
+                    <app-rate
+                        [rate]="{rate: product?.rating, feedbacks: product?.feedbacksCount}"
+                    ></app-rate>
+                    <div class="price-row">
+                        <div class="price">
+                            <p>{{ product?.price }}</p>
+                        </div>
+                        <button
+                            mat-mini-fab
+                            color="gray"
+                            class="center-align-icon-only"
+                            (click)="onAddToCartClicked()"
+                        >
+                            <mat-icon class="cart-icon">shopping_cart</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-card-subtitle>
+        </div>
+    </mat-card-content>
+</mat-card>
