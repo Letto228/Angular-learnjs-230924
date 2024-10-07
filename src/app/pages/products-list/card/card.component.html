@@ -1,0 +1,30 @@
+<mat-card appearance="outlined" class="card">
+    <div class="card__header">
+        <mat-card-header>
+            <img
+                mat-card-image
+                class="card__img"
+                [src]="product?.images?.[0]?.url"
+                [alt]="product?.name"
+            />
+        </mat-card-header>
+        <mat-card-content>
+            <mat-card-title class="card__title" [title]="product?.name">
+                {{ product?.name }}
+            </mat-card-title>
+            <div class="card__rating">
+                <h3>{{ product?.rating }}</h3>
+                <mat-icon aria-hidden="false" fontIcon="star"></mat-icon>
+            </div>
+            <p class="card__description">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos, aperiam!
+            </p>
+        </mat-card-content>
+    </div>
+    <mat-card-actions align="end" class="card__footer">
+        <h2>${{ product?.price }}</h2>
+        <button mat-flat-button color="primary" class="card__button" (click)="onAddToCart()">
+            Купить
+        </button>
+    </mat-card-actions>
+</mat-card>
