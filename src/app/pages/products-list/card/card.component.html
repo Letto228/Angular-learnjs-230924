@@ -1,0 +1,11 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>{{ product?.name }}</mat-card-title>
+        <mat-card-subtitle>{{ product?.price }}руб.</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image alt="Product image" [src]="product?.images?.[0]?.url" />
+    <mat-card-content class="card-content-class">Описание товара</mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-button (click)="onBuy()">Купить</button>
+    </mat-card-actions>
+</mat-card>
