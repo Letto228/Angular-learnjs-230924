@@ -8,4 +8,9 @@ import {productsMock} from '../../shared/products/products.mock';
 })
 export class ProductsListComponent {
     readonly products = productsMock;
+
+    addToCart(productId: string) {
+        // eslint-disable-next-line no-console
+        console.log(productId);
+    }
 }
