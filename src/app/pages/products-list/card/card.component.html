@@ -9,6 +9,8 @@
         [src]="product?.images?.[0]?.url"
     />
     <mat-card-actions>
-        <button mat-stroked-button>Купить за {{ product?.price | currency }}</button>
+        <button mat-stroked-button (click)="addToCart()">
+            Купить за {{ product?.price | currency }}
+        </button>
     </mat-card-actions>
 </mat-card>
