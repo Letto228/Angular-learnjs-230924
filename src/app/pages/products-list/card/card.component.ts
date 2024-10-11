@@ -7,7 +7,7 @@ import {Product} from 'src/app/shared/products/product.interface';
     styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-    @Input() product?: Product | undefined;
+    @Input() product: Product | undefined;
     @Output() addProduct = new EventEmitter<string>();
 
     addToCart(): void {
