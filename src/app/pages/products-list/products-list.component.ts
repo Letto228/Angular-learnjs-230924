@@ -8,4 +8,9 @@ import {productsMock} from '../../shared/products/products.mock';
 })
 export class ProductsListComponent {
     readonly products = productsMock;
+
+    addToCard(productId: string): string {
+        // console.log(productId);
+        return productId;
+    }
 }

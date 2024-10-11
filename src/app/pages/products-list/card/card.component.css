@@ -1,0 +1,16 @@
+.product-card {
+  height: 100%;
+}
+
+.product-card .mat-mdc-card-title {
+  margin-bottom: 16px;
+}
+
+.product-card .mat-mdc-card-image {
+  margin: 0 16px;
+}
+
+.product-card .mat-mdc-card-actions {
+  padding-top: 16px;
+  margin: auto auto 16px;
+}
