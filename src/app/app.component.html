@@ -2,24 +2,9 @@
     [applicationConfig]="applicationConfig"
     (menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
-<!-- <app-sidenav #sidenav [navigationListTemplate]="navigationList"></app-sidenav> -->
 <app-sidenav #sidenav>
-    <!-- <div #divFirst>
-        <div #divSecond></div>
-    </div> -->
-    <!-- <ng-template #navigationList let-userNameDefault let-userName="name">
-        <p>$implicit: {{userNameDefault}}</p>
-        <p>context property: {{userName}}</p>
-        <p>{{applicationConfig.title}}</p>
-        <mat-list role="list">
-            <mat-list-item role="listitem">Item 1</mat-list-item>
-            <mat-list-item role="listitem">Item 2</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
-        </mat-list>
-    </ng-template>     -->
-
     <div ngProjectAs="drawer-content">
-        <p ngProjectAs="title">{{ applicationConfig.title }}</p>
+        <p>{{ applicationConfig.title }}</p>
         <mat-list role="list">
             <mat-list-item role="listitem">Item 1</mat-list-item>
             <mat-list-item role="listitem">Item 2</mat-list-item>
@@ -28,14 +13,3 @@
     </div>
     <app-products-list></app-products-list>
 </app-sidenav>
-
-<!-- <ng-template #navigationList let-userNameDefault let-userName="name">
-    <p>$implicit: {{userNameDefault}}</p>
-    <p>context property: {{userName}}</p>
-    <p>{{applicationConfig.title}}</p>
-    <mat-list role="list">
-        <mat-list-item role="listitem">Item 1</mat-list-item>
-        <mat-list-item role="listitem">Item 2</mat-list-item>
-        <mat-list-item role="listitem">Item 3</mat-list-item>
-    </mat-list>
-</ng-template> -->
