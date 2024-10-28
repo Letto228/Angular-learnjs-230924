@@ -9,6 +9,9 @@
                 "@schematics/angular:component": {
                     "export": true,
                     "changeDetection": "OnPush"
+                },
+                "@schematics/angular:directive": {
+                    "export": true
                 }
             },
             "root": "",

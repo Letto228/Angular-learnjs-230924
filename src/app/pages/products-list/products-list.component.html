@@ -1,5 +1,35 @@
-<app-card class="card" [product]="products[0]"></app-card>
-<app-card class="card" [product]="products[1]"></app-card>
-<app-card class="card" [product]="products[2]"></app-card>
-<app-card class="card" [product]="products[3]"></app-card>
-<app-card class="card" [product]="products[4]"></app-card>
+<ng-template let-productsFromNgIf="ngIf" [ngIf]="products" [ngIfElse]="spiner">
+    <!-- <app-card class="card" [product]="productsFromNgIf[0]"></app-card>
+    <app-card class="card" [product]="productsFromNgIf[1]"></app-card>
+    <app-card class="card" [product]="productsFromNgIf[2]"></app-card>
+    <app-card class="card" [product]="productsFromNgIf[3]"></app-card>
+    <app-card class="card" [product]="productsFromNgIf[4]"></app-card> -->
+
+    <!-- <app-card class="card" [product]="products && products[0]"></app-card>
+    <app-card class="card" [product]="products && products[1]"></app-card>
+    <app-card class="card" [product]="products && products[2]"></app-card>
+    <app-card class="card" [product]="products && products[3]"></app-card>
+    <app-card class="card" [product]="products && products[4]"></app-card> -->
+
+    <ng-template
+        ngFor
+        let-product
+        let-index="index"
+        let-isOdd="odd"
+        [ngForOf]="productsFromNgIf"
+        [ngForTrackBy]="trackBy"
+    >
+        <!-- {{isOdd}} -->
+        <!-- <app-card class="card" [product]="product"></app-card> -->
+        <app-card class="card" [product]="productsFromNgIf[index]"></app-card>
+    </ng-template>
+</ng-template>
+
+<ng-template #spiner>
+    <mat-spinner></mat-spinner>
+</ng-template>
+
+<!-- Bad -->
+<!-- <ng-template [ngIf]="!products">
+    <mat-spinner></mat-spinner>
+</ng-template> -->
