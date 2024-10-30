@@ -19,7 +19,7 @@
             </div>
 
             <div class="pagination">
-                <button (click)="back()"></button>
+                <button (click)="back()">&#60;</button>
                 <button
                     *ngFor="let pageIndex of pageIndexes"
                     [ngClass]="pageIndex === activeIndex ? 'selected' : ''"
@@ -27,7 +27,7 @@
                 >
                     {{ pageIndex + 1 }}
                 </button>
-                <button (click)="next()"></button>
+                <button (click)="next()">&#62;</button>
             </div>
         </ng-template>
     </div>
