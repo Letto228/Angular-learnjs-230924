@@ -13,3 +13,22 @@
 .card {
     margin: 10px;
 }
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    min-height: 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.pagination__page-number_active {
+    color: blue;
+}

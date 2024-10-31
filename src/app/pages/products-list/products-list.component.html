@@ -1,35 +1,44 @@
-<ng-template let-productsFromNgIf="ngIf" [ngIf]="products" [ngIfElse]="spiner">
-    <!-- <app-card class="card" [product]="productsFromNgIf[0]"></app-card>
-    <app-card class="card" [product]="productsFromNgIf[1]"></app-card>
-    <app-card class="card" [product]="productsFromNgIf[2]"></app-card>
-    <app-card class="card" [product]="productsFromNgIf[3]"></app-card>
-    <app-card class="card" [product]="productsFromNgIf[4]"></app-card> -->
-
-    <!-- <app-card class="card" [product]="products && products[0]"></app-card>
-    <app-card class="card" [product]="products && products[1]"></app-card>
-    <app-card class="card" [product]="products && products[2]"></app-card>
-    <app-card class="card" [product]="products && products[3]"></app-card>
-    <app-card class="card" [product]="products && products[4]"></app-card> -->
-
+<ng-template let-productsFromNgIf [ngIf]="products" [ngIfElse]="spiner">
+    <!-- Раскомментрировать для ДЗ -->
     <ng-template
-        ngFor
-        let-product
-        let-index="index"
-        let-isOdd="odd"
-        [ngForOf]="productsFromNgIf"
-        [ngForTrackBy]="trackBy"
+        appPagination
+        let-productsGroup
+        let-pageIndexes="pageIndexes"
+        let-activeIndex="index"
+        let-next="next"
+        let-back="back"
+        let-selectIndex="selectIndex"
+        [appPaginationOf]="productsFromNgIf"
+        [appPaginationChunkSize]="4"
     >
-        <!-- {{isOdd}} -->
-        <!-- <app-card class="card" [product]="product"></app-card> -->
-        <app-card class="card" [product]="productsFromNgIf[index]"></app-card>
+        <div class="content">
+            <ng-template ngFor let-product [ngForOf]="productsGroup" [ngForTrackBy]="trackBy">
+                <app-card class="card" [product]="product"></app-card>
+            </ng-template>
+        </div>
+
+        <div class="pagination">
+            <button mat-icon-button (click)="back()">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <div class="pagination__page-number-container">
+                <button
+                    *ngFor="let index of pageIndexes"
+                    mat-icon-button
+                    class="pagination__page-number"
+                    [class.pagination__page-number_active]="activeIndex === index"
+                    (click)="selectIndex(index)"
+                >
+                    {{ index + 1 }}
+                </button>
+            </div>
+            <button mat-icon-button (click)="next()">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
     </ng-template>
 </ng-template>
 
 <ng-template #spiner>
     <mat-spinner></mat-spinner>
 </ng-template>
-
-<!-- Bad -->
-<!-- <ng-template [ngIf]="!products">
-    <mat-spinner></mat-spinner>
-</ng-template> -->

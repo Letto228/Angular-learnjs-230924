@@ -19,12 +19,6 @@ export class ProductsListComponent {
 
             this.changeDetectorRef.markForCheck();
         }, 3000);
-
-        setTimeout(() => {
-            this.products = productsMock.map(item => ({...item, feedbacksCount: 2}));
-
-            this.changeDetectorRef.markForCheck();
-        }, 4000);
     }
 
     trackBy(_index: number, item: Product) {
