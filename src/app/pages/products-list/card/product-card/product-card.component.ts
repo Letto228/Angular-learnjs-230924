@@ -13,7 +13,9 @@ export class ProductCardComponent {
     // eslint-disable-next-line @typescript-eslint/member-ordering
     private readonly snackBar = inject(MatSnackBar);
 
-    buyProduct(productName: string | undefined): void {
+    buyProduct(event: Event, productName: string | undefined): void {
+        event.stopPropagation();
+
         this.snackBar.open(
             productName
                 ? `"${productName}" добавлен в корзину`

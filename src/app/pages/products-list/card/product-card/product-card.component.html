@@ -15,6 +15,6 @@
         <p>Стоимость: {{ product?.price }} евров</p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button (click)="buyProduct(product?.name)">Добавить в корзину</button>
+        <button mat-button (click)="buyProduct($event, product?.name)">Добавить в корзину</button>
     </mat-card-actions>
 </mat-card>
