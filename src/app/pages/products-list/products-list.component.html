@@ -1,48 +1,17 @@
 <ng-container *ngIf="products as productsFromNgIf; else spiner">
-    <ng-container
-        *appPagination="
-            let productsGroup;
-            let pageIndexes = pageIndexes;
-            let activeIndex = index;
-            let next = next;
-            let back = back;
-            let selectIndex = selectIndex;
-            of: productsFromNgIf;
-            chunkSize: 4
-        "
-    >
-        <div class="content">
-            <app-card
-                *ngFor="
-                    let product of productsGroup;
-                    trackBy: trackByProductId;
-                    let localIndex = index
-                "
-                class="card"
-                [product]="product"
-            ></app-card>
-        </div>
-
-        <div class="pagination">
-            <button mat-icon-button (click)="back()">
-                <mat-icon>chevron_left</mat-icon>
-            </button>
-            <div class="pagination__page-number-container">
-                <button
-                    *ngFor="let index of pageIndexes"
-                    mat-icon-button
-                    class="pagination__page-number"
-                    [class.pagination__page-number_active]="activeIndex === index"
-                    (click)="selectIndex(index)"
-                >
-                    {{ index + 1 }}
-                </button>
-            </div>
-            <button mat-icon-button (click)="next()">
-                <mat-icon>chevron_right</mat-icon>
-            </button>
-        </div>
-    </ng-container>
+    <!-- Заменить при выполнении ДЗ -->
+    <!-- <div appScrollWithLoading class="scroll-container" (loadNextData)="loadNextProducts()"> -->
+    <div class="scroll-container">
+        <app-card
+            *ngFor="
+                let product of productsFromNgIf;
+                trackBy: trackByProductId;
+                let localIndex = index
+            "
+            class="card"
+            [product]="product"
+        ></app-card>
+    </div>
 </ng-container>
 
 <ng-template #spiner>
