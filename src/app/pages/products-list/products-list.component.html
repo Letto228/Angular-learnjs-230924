@@ -1,20 +1,4 @@
-<!-- <ng-template let-productsFromNgIf [appMyNgIf]="products"></ng-template> -->
-<!-- <ng-template let-productsFromNgIf [ngIf]="products" [ngIfElse]="spiner"> -->
-<!-- <ng-container *ngIf="products; else: spiner; let productsFromNgIf"></ng-container> -->
-<!-- <ng-container *ngIf="products; ngIf as productsFromNgIf; else: spiner"></ng-container> -->
 <ng-container *ngIf="products as productsFromNgIf; else spiner">
-    <!-- Раскомментрировать для ДЗ -->
-    <!-- <ng-template
-        appPagination
-        let-productsGroup
-        let-pageIndexes="pageIndexes"
-        let-activeIndex="index"
-        let-next="next"
-        let-back="back"
-        let-selectIndex="selectIndex"
-        [appPaginationOf]="productsFromNgIf"
-        [appPaginationChunkSize]="4"
-    > -->
     <ng-container
         *appPagination="
             let productsGroup;
@@ -28,21 +12,6 @@
         "
     >
         <div class="content">
-            <!-- <ng-template ngFor let-product [ngForOf]="productsGroup" [ngForTrackBy]="trackByProductId">
-                <app-card class="card" [product]="product"></app-card>
-            </ng-template> -->
-            <!-- Input name = prefix + key -->
-            <!-- <app-card *ngFor="let product; index as localIndex;" class="card" [product]="product"></app-card> -->
-            <!-- <app-card *ngFor="let product; let localIndex = index; of: productsGroup; ngForOf as productsGroupFromNgFor" class="card" [product]="product"></app-card> -->
-            <!-- <app-card
-                *ngFor="
-                    let product;
-                    let localIndex = index;
-                    of: productsGroup as productsGroupFromNgFor;
-                "
-                class="card"
-                [product]="product"
-            ></app-card> -->
             <app-card
                 *ngFor="
                     let product of productsGroup;
@@ -74,9 +43,7 @@
             </button>
         </div>
     </ng-container>
-    <!-- </ng-template> -->
 </ng-container>
-<!-- </ng-template> -->
 
 <ng-template #spiner>
     <mat-spinner></mat-spinner>
