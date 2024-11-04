@@ -8,9 +8,10 @@ import {AppComponent} from './app.component';
 import {HeaderModule} from './core-components/header/header.module';
 import {ProductsListModule} from './pages/products-list/products-list.module';
 import {SidenavModule} from './core-components/sidenav/sidenav.module';
+import {PopupHostComponent} from './shared/popup-host/popup-host.component';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, PopupHostComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -21,5 +22,6 @@ import {SidenavModule} from './core-components/sidenav/sidenav.module';
         MatListModule,
     ],
     bootstrap: [AppComponent],
+    exports: [PopupHostComponent],
 })
 export class AppModule {}
