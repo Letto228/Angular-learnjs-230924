@@ -1,6 +1,8 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject} from '@angular/core';
-import {productsMock} from '../../shared/products/products.mock';
 import {Product} from '../../shared/products/product.interface';
+import {getNextProducts} from './get-next-chunk';
+
+const chunkSize = 4;
 
 @Component({
     selector: 'app-products-list',
@@ -15,7 +17,7 @@ export class ProductsListComponent {
 
     constructor() {
         setTimeout(() => {
-            this.products = productsMock;
+            this.products = getNextProducts(chunkSize);
 
             this.changeDetectorRef.markForCheck();
         }, 3000);
@@ -23,5 +25,17 @@ export class ProductsListComponent {
 
     trackByProductId(_index: number, item: Product) {
         return item._id;
+    }
+
+    loadNextProducts() {
+        if (!this.products) {
+            return;
+        }
+
+        const lastProductIndex = this.products.length - 1;
+        const lastProductId = this.products[lastProductIndex]._id;
+        const nextChunk = getNextProducts(chunkSize, lastProductId);
+
+        this.products = [...this.products, ...nextChunk];
     }
 }

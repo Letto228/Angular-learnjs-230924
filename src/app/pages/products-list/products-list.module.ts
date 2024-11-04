@@ -7,6 +7,7 @@ import {ProductsListComponent} from './products-list.component';
 import {CardModule} from './card/card.module';
 import {MyNgIfModule} from '../../shared/my-ng-if/my-ng-if.module';
 import {PaginationModule} from '../../shared/pagination/pagination.module';
+import {ScrollWithLoadingModule} from '../../shared/scroll-with-loading/scroll-with-loading.module';
 
 @NgModule({
     declarations: [ProductsListComponent],
@@ -18,6 +19,7 @@ import {PaginationModule} from '../../shared/pagination/pagination.module';
         PaginationModule,
         MatIconModule,
         MatButtonModule,
+        ScrollWithLoadingModule,
     ],
     exports: [ProductsListComponent],
 })
