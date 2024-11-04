@@ -1,3 +1,10 @@
+<!-- Easy вариант -->
+<!-- <ng-container *ngIf="(products | productsFilter : name) as productsFromNgIf; else loader"> -->
+
+<!-- Hard вариант -->
+<!-- <ng-container *ngIf="(products | filterByProperty : propertyName : searchPropertyValue) as productsFromNgIf; else spiner"> -->
+
+<!-- Закомментировать при выполнении ДЗ -->
 <ng-container *ngIf="products as productsFromNgIf; else spiner">
     <div appScrollWithLoading class="scroll-container" (loadNextData)="loadNextProducts()">
         <app-card
