@@ -1,27 +1,48 @@
 <ng-template let-productsFromNgIf [ngIf]="products" [ngIfElse]="spiner">
     <!-- Раскомментрировать для ДЗ -->
-    <!-- <ng-template
+    <ng-template
         appPagination
-        [appPaginationOf]="productsFromNgIf"
-        [appPaginationChunkSize]="4"
         let-productsGroup
         let-pageIndexes="pageIndexes"
         let-activeIndex="index"
         let-next="next"
         let-back="back"
         let-selectIndex="selectIndex"
-    > -->
-    <div>
-        <ng-template ngFor let-product [ngForOf]="productsFromNgIf" [ngForTrackBy]="trackBy">
-            <app-card class="card" [product]="product"></app-card>
-        </ng-template>
-    </div>
+        [appPaginationOf]="productsFromNgIf"
+        [appPaginationChunkSize]="4"
+    >
+        <div class="content">
+            <div class="products">
+                <ng-template ngFor let-product [ngForOf]="productsGroup" [ngForTrackBy]="trackBy">
+                    <app-card class="card" [product]="product"></app-card>
+                </ng-template>
+            </div>
 
-    <div class="pagination">
-        <!-- Add pagination control -->
-    </div>
+            <div class="pagination">
+                <button mat-icon-button [disabled]="activeIndex === 0" (click)="back()">
+                    <mat-icon>chevron_left</mat-icon>
+                </button>
 
-    <!-- </ng-template> -->
+                <button
+                    *ngFor="let pageIndex of pageIndexes"
+                    mat-flat-button
+                    act
+                    [disabled]="activeIndex === pageIndex"
+                    (click)="selectIndex(pageIndex)"
+                >
+                    {{ pageIndex + 1 }}
+                </button>
+
+                <button
+                    mat-icon-button
+                    [disabled]="activeIndex === pageIndexes.length - 1"
+                    (click)="next()"
+                >
+                    <mat-icon>chevron_right</mat-icon>
+                </button>
+            </div>
+        </div>
+    </ng-template>
 </ng-template>
 
 <ng-template #spiner>
