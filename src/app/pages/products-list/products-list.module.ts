@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {FilterByPropertyModule} from 'src/app/shared/filter-by-property/filter-by-property.module';
 import {ProductsListComponent} from './products-list.component';
 import {CardModule} from './card/card.module';
 import {MyNgIfModule} from '../../shared/my-ng-if/my-ng-if.module';
@@ -20,6 +21,7 @@ import {ScrollWithLoadingModule} from '../../shared/scroll-with-loading/scroll-w
         MatIconModule,
         MatButtonModule,
         ScrollWithLoadingModule,
+        FilterByPropertyModule,
     ],
     exports: [ProductsListComponent],
 })
