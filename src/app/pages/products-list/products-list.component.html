@@ -1,7 +1,5 @@
 <ng-container *ngIf="products as productsFromNgIf; else spiner">
-    <!-- Заменить при выполнении ДЗ -->
-    <!-- <div appScrollWithLoading class="scroll-container" (loadNextData)="loadNextProducts()"> -->
-    <div class="scroll-container">
+    <div appScrollWithLoading class="scroll-container" (loadNextData)="loadNextProducts()">
         <app-card
             *ngFor="
                 let product of productsFromNgIf;
