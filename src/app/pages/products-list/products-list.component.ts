@@ -1,8 +1,8 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {Product} from '../../shared/products/product.interface';
-import {getNextProducts} from './get-next-chunk';
+import {ProductsStoreService} from '../../shared/products/products-store.service';
 
-const chunkSize = 4;
+// const chunkSize = 4;
 
 @Component({
     selector: 'app-products-list',
@@ -11,23 +11,30 @@ const chunkSize = 4;
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsListComponent {
-    private readonly changeDetectorRef = inject(ChangeDetectorRef);
+    private readonly productsStoreService = inject(ProductsStoreService);
 
-    products: Product[] | null = null;
+    readonly products$ = this.productsStoreService.products$;
 
-    // For easy
-    name = 'Мышь';
+    // // For easy
+    // name = 'Мышь';
 
-    // For hard
-    readonly propertyName = 'feedbacksCount' as const; // keyof Product
-    searchPropertyValue = 2;
+    // // For hard
+    // readonly propertyName = 'feedbacksCount' as const; // keyof Product
+    // searchPropertyValue = 2;
 
     constructor() {
-        setTimeout(() => {
-            this.products = getNextProducts(chunkSize);
+        this.productsStoreService.loadProducts();
+        // this.products$.subscribe(() => {
+        //     this.products = getNextProducts(chunkSize);
 
-            this.changeDetectorRef.markForCheck();
-        }, 3000);
+        //     this.changeDetectorRef.markForCheck();
+        // });
+
+        // setTimeout(() => {
+        //     this.products = getNextProducts(chunkSize);
+
+        //     this.changeDetectorRef.markForCheck();
+        // }, 3000);
     }
 
     trackByProductId(_index: number, item: Product) {
@@ -35,14 +42,12 @@ export class ProductsListComponent {
     }
 
     loadNextProducts() {
-        if (!this.products) {
-            return;
-        }
-
-        const lastProductIndex = this.products.length - 1;
-        const lastProductId = this.products[lastProductIndex]._id;
-        const nextChunk = getNextProducts(chunkSize, lastProductId);
-
-        this.products = [...this.products, ...nextChunk];
+        // if (!this.products) {
+        //     return;
+        // }
+        // const lastProductIndex = this.products.length - 1;
+        // const lastProductId = this.products[lastProductIndex]._id;
+        // const nextChunk = getNextProducts(chunkSize, lastProductId);
+        // this.products = [...this.products, ...nextChunk];
     }
 }

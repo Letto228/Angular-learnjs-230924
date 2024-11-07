@@ -3,10 +3,7 @@
 
 <!-- Hard вариант -->
 <ng-container
-    *ngIf="
-        products | filterByProperty: propertyName : searchPropertyValue as productsFromNgIf;
-        else spiner
-    "
+    *ngIf="products$ | async | filterByProperty: 'name' : '' as productsFromNgIf; else spiner"
 >
     <!-- Закомментировать при выполнении ДЗ -->
     <!-- <ng-container *ngIf="products as productsFromNgIf; else spiner"> -->
