@@ -29,13 +29,6 @@ import {ErrorInterceptor} from './shared/error/error.interceptor';
         HttpClientModule,
     ],
     providers: [
-        // ProductsStoreService,
-        // ProductsApiService,
-        // {
-        //     provide: BASE_URL_TOKEN,
-        //     useFactory: () => baseUrl,
-        //     // useValue: baseUrl,
-        // },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: BaseUrlInterceptor,
