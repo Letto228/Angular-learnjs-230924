@@ -11,6 +11,8 @@ import {BehaviorSubject, filter, map} from 'rxjs';
 
 interface PaginationDirectiveContext<T> {
     $implicit: T[];
+    isFirst: boolean;
+    isLast: boolean;
     index: number;
     pageIndexes: number[];
     appPaginationOf: T[];
@@ -27,6 +29,8 @@ export class PaginationDirective<T> implements OnChanges {
     private readonly templateRef = inject<TemplateRef<PaginationDirectiveContext<T>>>(TemplateRef);
 
     private readonly currentIndex$ = new BehaviorSubject<number>(0);
+
+    private pages: number[] = [];
 
     @Input() appPaginationOf: T[] | null | undefined;
 
@@ -46,7 +50,7 @@ export class PaginationDirective<T> implements OnChanges {
         return !!this.appPaginationOf?.length;
     }
 
-    private get pages(): number[] {
+    private getPages(): number[] {
         if (this.appPaginationOf?.length && this.appPaginationChunkSize) {
             const pagesCount = Math.ceil(this.appPaginationOf.length / this.appPaginationChunkSize);
 
@@ -58,6 +62,7 @@ export class PaginationDirective<T> implements OnChanges {
 
     private updateView() {
         if (this.shouldShowView) {
+            this.pages = this.getPages();
             this.currentIndex$.next(0);
 
             return;
@@ -90,6 +95,8 @@ export class PaginationDirective<T> implements OnChanges {
             appPaginationOf,
             index: currentIndex,
             $implicit: currentItems,
+            isFirst: currentIndex === 0,
+            isLast: currentIndex === this.pages.length - 1,
             next: this.next.bind(this),
             pageIndexes: this.pages,
             back: this.back.bind(this),

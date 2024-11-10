@@ -5,6 +5,8 @@
         let-productsGroup
         let-pageIndexes="pageIndexes"
         let-activeIndex="index"
+        let-isFirst="isFirst"
+        let-isLast="isLast"
         let-next="next"
         let-back="back"
         let-selectIndex="selectIndex"
@@ -19,25 +21,20 @@
             </div>
 
             <div class="pagination">
-                <button mat-icon-button [disabled]="activeIndex === 0" (click)="back()">
+                <button mat-icon-button [disabled]="isFirst" (click)="back()">
                     <mat-icon>chevron_left</mat-icon>
                 </button>
 
                 <button
                     *ngFor="let pageIndex of pageIndexes"
                     mat-flat-button
-                    act
                     [disabled]="activeIndex === pageIndex"
                     (click)="selectIndex(pageIndex)"
                 >
                     {{ pageIndex + 1 }}
                 </button>
 
-                <button
-                    mat-icon-button
-                    [disabled]="activeIndex === pageIndexes.length - 1"
-                    (click)="next()"
-                >
+                <button mat-icon-button [disabled]="isLast" (click)="next()">
                     <mat-icon>chevron_right</mat-icon>
                 </button>
             </div>
