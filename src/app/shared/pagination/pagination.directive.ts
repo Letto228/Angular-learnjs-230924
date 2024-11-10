@@ -105,11 +105,15 @@ export class PaginationDirective<T> implements OnChanges {
     }
 
     private next() {
-        this.currentIndex$.next(this.currentIndex$.value + 1);
+        const nextIndex = this.currentIndex$.value + 1;
+
+        this.currentIndex$.next(nextIndex < this.pages.length ? nextIndex : this.pages.length - 1);
     }
 
     private back() {
-        this.currentIndex$.next(this.currentIndex$.value - 1);
+        const prevIndex = this.currentIndex$.value - 1;
+
+        this.currentIndex$.next(prevIndex >= 0 ? prevIndex : 0);
     }
 
     private selectIndex(pageIndex: number) {
