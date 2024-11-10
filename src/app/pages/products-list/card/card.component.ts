@@ -7,10 +7,10 @@ import {Product} from 'src/app/shared/products/product.interface';
     styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-    @Input() product?: Product;
+    @Input() product: Product | null = null;
     @Output() addToCart = new EventEmitter<string>();
 
-    add(e: Event) {
+    onProductAddToCart(e: Event) {
         e.stopPropagation();
 
         if (!this.product) {

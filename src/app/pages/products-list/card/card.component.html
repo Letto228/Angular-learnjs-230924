@@ -2,11 +2,11 @@
     <mat-card-header>
         <mat-card-title>{{ product?.name }}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image alt="{{ product?.name }}" [src]="product?.images?.[0]?.url" />
+    <img mat-card-image [alt]="product?.name" [src]="product?.images?.[0]?.url" />
     <mat-card-content>
         <p>{{ product?.price }} билетов банка приколов</p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button (click)="add($event)">Купить</button>
+        <button mat-button (click)="onProductAddToCart($event)">Купить</button>
     </mat-card-actions>
 </mat-card>
