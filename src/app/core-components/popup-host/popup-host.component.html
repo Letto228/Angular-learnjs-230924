@@ -1,4 +1,4 @@
-<div class="popup-container {{ !isContainerVisible ? 'hide' : '' }}">
+<div class="popup-container" [class.hide]="!isContainerVisible">
     <div class="popup-content">
         <ng-container #viewport></ng-container>
     </div>
