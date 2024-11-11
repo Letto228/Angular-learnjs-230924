@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {Router} from '@angular/router';
 import {Product} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
 
@@ -10,11 +11,17 @@ import {ProductsStoreService} from '../../shared/products/products-store.service
 })
 export class ProductsListComponent {
     private readonly productsStoreService = inject(ProductsStoreService);
+    private readonly router = inject(Router);
 
     readonly products$ = this.productsStoreService.products$;
 
     constructor() {
         this.productsStoreService.loadProducts();
+    }
+
+    navigateToCard() {
+        this.router.navigateByUrl('/product/id');
+        // this.router.navigate(['/', 'product', 'id']);
     }
 
     trackByProductId(_index: number, item: Product) {
