@@ -4,32 +4,12 @@
     class="scroll-container"
     (loadNextData)="loadNextProducts()"
 >
-    <!-- <app-card
-        *ngFor="
-            let product of productsFromNgIf;
-            trackBy: trackByProductId;
-            let localIndex = index
-        "
-        class="card"
-        [product]="product"
-        (click)="navigateToCard()"
-    ></app-card> -->
     <app-card
         *ngFor="let product of productsFromNgIf; trackBy: trackByProductId; let localIndex = index"
         class="card"
         [routerLink]="['/', 'product', product._id]"
         [product]="product"
     ></app-card>
-    <!-- <app-card
-        *ngFor="
-            let product of productsFromNgIf;
-            trackBy: trackByProductId;
-            let localIndex = index
-        "
-        routerLink="/product/id"
-        class="card"
-        [product]="product"
-    ></app-card> -->
 </div>
 
 <ng-template #spiner>

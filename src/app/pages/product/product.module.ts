@@ -23,6 +23,5 @@ import {ProductRoutingModule} from './product-routing.module';
         DescriptionModule,
         ProductRoutingModule,
     ],
-    exports: [ProductComponent, DescriptionModule, TypeModule],
 })
 export class ProductModule {}
