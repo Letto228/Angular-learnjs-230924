@@ -1,5 +1,10 @@
-<div class="popup-host" [class.empty]="isViewportClear">
-    <div class="content-wrapper">
-        <ng-container #viewport></ng-container>
+<ng-container *ngIf="popup$ | async as popup">
+    <div class="popup-host" [class.empty]="isPoputContentClear">
+        <div class="content-wrapper">
+            <button mat-icon-button color="warn" class="close-button-style" (click)="onClose()">
+                <mat-icon>cancel</mat-icon>
+            </button>
+            <ng-container *ngTemplateOutlet="popup.template; context: popup.context"></ng-container>
+        </div>
     </div>
-</div>
+</ng-container>
