@@ -1,4 +1,6 @@
-import {Component, Input, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
+import {ChangeDetectorRef, Component, inject} from '@angular/core';
+import {tap} from 'rxjs';
+import {PopupHostStoreService} from './popup-host-store.service';
 
 @Component({
     selector: 'app-popup-host',
@@ -6,22 +8,18 @@ import {Component, Input, TemplateRef, ViewChild, ViewContainerRef} from '@angul
     styleUrls: ['./popup-host.component.css'],
 })
 export class PopupHostComponent {
-    @ViewChild('viewport', {read: ViewContainerRef, static: true})
-    private readonly viewportViewContainer: ViewContainerRef | undefined;
+    private readonly popupHostStoreService = inject(PopupHostStoreService);
+    private readonly cdr = inject(ChangeDetectorRef);
+    readonly popup$ = this.popupHostStoreService.popup$.pipe(
+        tap(popup => {
+            this.isPoputContentClear = !popup?.template;
+            this.cdr.markForCheck();
+        }),
+    );
 
-    @Input() set template(template: TemplateRef<unknown> | null) {
-        this.updatePopupContent(template);
-    }
+    isPoputContentClear = false;
 
-    get isViewportClear(): boolean {
-        return !this.viewportViewContainer?.length;
-    }
-
-    private updatePopupContent(template: TemplateRef<unknown> | null) {
-        this.viewportViewContainer?.clear();
-
-        if (template) {
-            this.viewportViewContainer?.createEmbeddedView(template);
-        }
+    onClose() {
+        this.popupHostStoreService.closePopup();
     }
 }
