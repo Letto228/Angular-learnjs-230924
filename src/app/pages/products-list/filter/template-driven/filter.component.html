@@ -1,0 +1,45 @@
+<form #ngForm="ngForm" class="filter" (ngSubmit)="sendData(ngForm.value)">
+    <!-- <div ngForm> -->
+    <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <!-- <input matInput [ngModel]="'Egor'" /> -->
+        <!-- <input matInput [ngModel]="searchValue" (ngModelChange)="searchValue = $event" /> -->
+        <!-- <input matInput [(ngModel)]="searchValue" /> -->
+        <input #searchModel="ngModel" matInput ngModel="" name="search" />
+    </mat-form-field>
+
+    <div *ngIf="brands; else loaderTemplateRef" ngModelGroup="brands" class="checkbox-container">
+        <!-- <mat-checkbox
+            *ngFor="let brand of brands; let index = index"
+            [ngModel]="false"
+            [name]="index.toString()"
+        > -->
+        <mat-checkbox *ngFor="let brand of brands" [ngModel]="false" [name]="brand">
+            {{ brand }}
+        </mat-checkbox>
+    </div>
+    <div ngModelGroup="priceRange" class="price-range">
+        <div>
+            Min
+            <app-counter-input name="min" [ngModel]="0"></app-counter-input>
+        </div>
+        <div>
+            Max
+            <app-counter-input name="max" [ngModel]="999999"></app-counter-input>
+        </div>
+    </div>
+
+    <button type="submit">Отправить</button>
+    <!-- </div> -->
+</form>
+
+<!-- {{searchValue}} -->
+<!-- {{searchModel.value}}
+{{searchModel.dirty}}
+{{searchModel.touched}}
+{{searchModel.invalid}} -->
+<!-- {{ngForm.value | json}} -->
+
+<ng-template #loaderTemplateRef>
+    <mat-spinner diameter="60" class="loader"></mat-spinner>
+</ng-template>

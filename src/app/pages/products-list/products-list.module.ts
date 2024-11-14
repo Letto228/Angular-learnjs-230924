@@ -8,6 +8,8 @@ import {CardModule} from './card/card.module';
 import {ScrollWithLoadingModule} from '../../shared/scroll-with-loading/scroll-with-loading.module';
 import {FilterByPropertyModule} from '../../shared/filter-by-property/filter-by-property.module';
 import {ProductsListRoutingModule} from './products-list-routing.module';
+// import {FilterModule} from './filter/reactive/filter.module';
+import {FilterModule} from './filter/template-driven/filter.module';
 
 @NgModule({
     declarations: [ProductsListComponent],
@@ -20,6 +22,7 @@ import {ProductsListRoutingModule} from './products-list-routing.module';
         ScrollWithLoadingModule,
         FilterByPropertyModule,
         ProductsListRoutingModule,
+        FilterModule,
     ],
 })
 export class ProductsListModule {}

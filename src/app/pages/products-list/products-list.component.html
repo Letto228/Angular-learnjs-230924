@@ -1,3 +1,5 @@
+<app-filter [brands]="brands$ | async"></app-filter>
+
 <div
     *ngIf="products$ | async | filterByProperty: 'name' : '' as productsFromNgIf; else spiner"
     appScrollWithLoading
