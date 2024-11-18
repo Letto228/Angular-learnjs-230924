@@ -23,9 +23,12 @@
     </div>
 </form>
 
-{{ form.dirty }}
+<!-- {{form.get('search')?.invalid}} -->
+<!-- {{form.get('search')?.errors | json}} -->
+{{ searchControlErrors$ | async | json }}
+<!-- {{ form.dirty }}
 {{ form.touched }}
-{{ form.invalid }}
+{{ form.invalid }} -->
 
 <ng-template #loaderTemplateRef>
     <mat-spinner diameter="60" class="loader"></mat-spinner>

@@ -1,5 +1,29 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {
+    AbstractControl,
+    AsyncValidatorFn,
+    FormArray,
+    FormControl,
+    FormGroup,
+    ValidationErrors,
+    Validators,
+} from '@angular/forms';
+import {map, Observable, timer} from 'rxjs';
+import {isString} from '../is-string';
+
+// const isStringValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null =>
+//     isString(control.value) ? null : {isString: 'Is string error'};
+
+const isStringAsyncValidator: AsyncValidatorFn = (
+    control: AbstractControl,
+): Observable<ValidationErrors | null> => {
+    // eslint-disable-next-line no-console
+    console.log('isStringAsyncValidator');
+
+    return timer(3000).pipe(
+        map(() => (isString(control.value) ? null : {isString: 'Is string error'})),
+    );
+};
 
 @Component({
     selector: 'app-filter',
@@ -12,13 +36,20 @@ export class FilterComponent implements OnChanges {
 
     // readonly searchControl = new FormControl('');
     readonly form = new FormGroup({
-        search: new FormControl(''),
+        search: new FormControl('', {
+            validators: [Validators.minLength(3), Validators.required],
+            asyncValidators: [isStringAsyncValidator],
+        }),
         brands: new FormArray<FormControl<boolean>>([]),
         priceRange: new FormGroup({
             min: new FormControl(0),
             max: new FormControl(999999),
         }),
     });
+
+    readonly searchControlErrors$ = this.form
+        .get('search')
+        ?.statusChanges.pipe(map(() => this.form.get('search')?.errors));
 
     constructor() {
         // setTimeout(() => {

@@ -5,7 +5,15 @@
         <!-- <input matInput [ngModel]="'Egor'" /> -->
         <!-- <input matInput [ngModel]="searchValue" (ngModelChange)="searchValue = $event" /> -->
         <!-- <input matInput [(ngModel)]="searchValue" /> -->
-        <input #searchModel="ngModel" matInput ngModel="" name="search" />
+        <input
+            #searchModel="ngModel"
+            matInput
+            ngModel=""
+            name="search"
+            required
+            minlength="3"
+            appIsStringAsyncValidator
+        />
     </mat-form-field>
 
     <div *ngIf="brands; else loaderTemplateRef" ngModelGroup="brands" class="checkbox-container">
@@ -32,6 +40,9 @@
     <button type="submit">Отправить</button>
     <!-- </div> -->
 </form>
+
+{{ searchModel.invalid }}
+{{ searchModel.errors | json }}
 
 <!-- {{searchValue}} -->
 <!-- {{searchModel.value}}
