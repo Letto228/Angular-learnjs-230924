@@ -1,0 +1,26 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.example-card {
+  width: 300px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.example-card img {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+.card-content--p {
+  padding: 16px 0;
+}

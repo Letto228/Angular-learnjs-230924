@@ -1,5 +1,25 @@
-<!-- <app-card class="card" [product]="products[0]"></app-card>
-<app-card class="card" [product]="products[1]"></app-card>
-<app-card class="card" [product]="products[2]"></app-card>
-<app-card class="card" [product]="products[3]"></app-card>
-<app-card class="card" [product]="products[4]"></app-card> -->
+<app-card-item
+    class="card"
+    [product]="products[0]"
+    (buyButtonClick)="printBoughtItemId(products[0]._id)"
+></app-card-item>
+<app-card-item
+    class="card"
+    [product]="products[2]"
+    (buyButtonClick)="printBoughtItemId(products[1]._id)"
+></app-card-item>
+<app-card-item
+    class="card"
+    [product]="products[3]"
+    (buyButtonClick)="printBoughtItemId(products[2]._id)"
+></app-card-item>
+<app-card-item
+    class="card"
+    [product]="products[3]"
+    (buyButtonClick)="printBoughtItemId(products[3]._id)"
+></app-card-item>
+<app-card-item
+    class="card"
+    [product]="products[4]"
+    (buyButtonClick)="printBoughtItemId(products[4]._id)"
+></app-card-item>
