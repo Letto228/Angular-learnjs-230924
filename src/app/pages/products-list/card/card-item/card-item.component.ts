@@ -9,9 +9,17 @@ import {Product} from '../../../../shared/products/product.interface';
 export class CardItemComponent {
     @Input() product: Product | undefined;
 
-    @Output() buyButtonClick = new EventEmitter<string>();
+    @Output() readonly buyButtonClick = new EventEmitter<string>();
 
-    notifyParent(_id: string | undefined) {
-        this.buyButtonClick.emit(this.product?._id);
+    notifyParent(event: MouseEvent): void {
+        event.stopPropagation();
+
+        if (this.product) {
+            this.buyButtonClick.emit(this.product._id);
+        }
+    }
+
+    get imageUrl(): string {
+        return this.product?.images[0].url ?? '';
     }
 }
