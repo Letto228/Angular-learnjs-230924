@@ -13,7 +13,7 @@ export class PopupHostComponent {
     @HostBinding('class.empty')
     isEmpty = true;
 
-    data$ = this.popupService.template$.pipe(
+    readonly data$ = this.popupService.template$.pipe(
         tap(templateData => {
             this.isEmpty = !templateData?.template;
         }),

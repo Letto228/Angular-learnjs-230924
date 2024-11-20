@@ -1,12 +1,10 @@
-<ng-container *ngIf="data$ | async as templateData">
-    <div class="popup-host">
-        <div class="content-wrapper">
-            <button mat-icon-button class="close-btn" (click)="closePopup()">
-                <mat-icon>close</mat-icon>
-            </button>
-            <ng-container
-                *ngTemplateOutlet="templateData.template; context: templateData.context"
-            ></ng-container>
-        </div>
+<div *ngIf="data$ | async as templateData" class="popup-host">
+    <div class="content-wrapper">
+        <button mat-icon-button class="close-btn" (click)="closePopup()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <ng-container
+            *ngTemplateOutlet="templateData.template; context: templateData.context"
+        ></ng-container>
     </div>
-</ng-container>
+</div>
