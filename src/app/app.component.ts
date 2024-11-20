@@ -1,5 +1,7 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {Store} from '@ngrx/store';
 import {applicationConfigMock} from './shared/application-config/application-config.mock';
+import {State} from './store/reducer';
 
 @Component({
     selector: 'app-root',
@@ -9,4 +11,9 @@ import {applicationConfigMock} from './shared/application-config/application-con
 })
 export class AppComponent {
     readonly applicationConfig = applicationConfigMock;
+
+    constructor() {
+        // eslint-disable-next-line no-console
+        inject<Store<State>>(Store).subscribe(console.log);
+    }
 }
