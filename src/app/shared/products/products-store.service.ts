@@ -40,14 +40,16 @@ export class ProductsStoreService {
 
         const productPreview = this.productsStore$.value?.find(({_id}) => _id === id);
 
-        this.currentProductStore$.next(productPreview || null);
+        if (productPreview) {
+            this.currentProductStore$.next(productPreview);
+        } else {
+            this.activeLoadCurrentProductSubscription = this.productsApiService
+                .getProduct$(id)
+                .subscribe(product => {
+                    this.currentProductStore$.next(product || null);
 
-        this.activeLoadCurrentProductSubscription = this.productsApiService
-            .getProduct$(id)
-            .subscribe(product => {
-                this.currentProductStore$.next(product || null);
-
-                this.activeLoadCurrentProductSubscription = null;
-            });
+                    this.activeLoadCurrentProductSubscription = null;
+                });
+        }
     }
 }
