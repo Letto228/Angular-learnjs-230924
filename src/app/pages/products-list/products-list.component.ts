@@ -1,4 +1,6 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {map, switchMap, tap} from 'rxjs/operators';
 import {Product} from '../../shared/products/product.interface';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
 
@@ -10,12 +12,14 @@ import {ProductsStoreService} from '../../shared/products/products-store.service
 })
 export class ProductsListComponent {
     private readonly productsStoreService = inject(ProductsStoreService);
-
-    readonly products$ = this.productsStoreService.products$;
-
-    constructor() {
-        this.productsStoreService.loadProducts();
-    }
+    private readonly activatedRoute = inject(ActivatedRoute);
+    readonly products$ = this.activatedRoute.paramMap.pipe(
+        map(paramMap => paramMap.get('category')),
+        tap(categoryId => {
+            this.productsStoreService.loadProducts(categoryId);
+        }),
+        switchMap(() => this.productsStoreService.products$),
+    );
 
     trackByProductId(_index: number, item: Product) {
         return item._id;
