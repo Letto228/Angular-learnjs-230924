@@ -1,4 +1,6 @@
-import {Component, Input, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, HostBinding, HostListener, inject} from '@angular/core';
+import {tap} from 'rxjs';
+import {PopupHostService} from './popup-host.service';
 
 @Component({
     selector: 'app-popup-host',
@@ -6,22 +8,19 @@ import {Component, Input, TemplateRef, ViewChild, ViewContainerRef} from '@angul
     styleUrls: ['./popup-host.component.css'],
 })
 export class PopupHostComponent {
-    @ViewChild('viewport', {read: ViewContainerRef, static: true})
-    private readonly viewportViewContainer: ViewContainerRef | undefined;
+    private readonly popupService = inject(PopupHostService);
 
-    @Input() set template(template: TemplateRef<unknown> | null) {
-        this.updatePopupContent(template);
-    }
+    @HostBinding('class.empty')
+    isEmpty = true;
 
-    get isViewportClear(): boolean {
-        return !this.viewportViewContainer?.length;
-    }
+    readonly data$ = this.popupService.template$.pipe(
+        tap(templateData => {
+            this.isEmpty = !templateData?.template;
+        }),
+    );
 
-    private updatePopupContent(template: TemplateRef<unknown> | null) {
-        this.viewportViewContainer?.clear();
-
-        if (template) {
-            this.viewportViewContainer?.createEmbeddedView(template);
-        }
+    @HostListener('document:keydown.escape')
+    closePopup() {
+        this.popupService.closePopup();
     }
 }

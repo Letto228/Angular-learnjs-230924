@@ -11,7 +11,7 @@
     z-index: 1;
 }
 
-.empty {
+:host.empty {
     display: none;
 }
 
@@ -19,4 +19,11 @@
     padding: 20px;
     border-radius: 8px;
     background-color: #fff;
+    position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
